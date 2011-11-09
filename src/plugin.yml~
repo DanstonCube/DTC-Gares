@@ -1,6 +1,6 @@
-name: DTC-Gares
+name: DTCGares
 author: DrZoid (miko)
-main: com.danstoncube.Gares.Gares
+main: com.danstoncube.plugin.drzoid.Gares.Gares
 version: 1.0
 depend: [Spout]
 commands:

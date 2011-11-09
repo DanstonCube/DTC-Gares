@@ -1,7 +1,8 @@
-package com.danstoncube.plugin.drzoid.Gares;
+package com.danstoncube.Gares;
 
 
 
+import org.bukkit.ChatColor;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.event.screen.ScreenListener;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -18,43 +19,32 @@ public class GaresScreenListener extends ScreenListener
 		@Override
 		public void onButtonClick(ButtonClickEvent event) 
 		{
-
-			
-			
-			
 			SpoutPlayer player = event.getPlayer();
-			
-			//player.
 			
 			GaresPopup popup = (GaresPopup) player.getMainScreen().getActivePopup();
 			
 			
 			if(popup.isB1(event.getButton()))
 			{
-				player.sendMessage("B1");
+				player.chat("/bisougare");
 			}			
 			else if(popup.isB2(event.getButton()))
 			{
-				player.sendMessage("B2");
+				player.chat("/bisoumine");
 			}			
 			else if(popup.isB3(event.getButton()))
 			{
-				player.sendMessage("B3");
+				player.chat("/bisouferme");
 			}			
 			else if(popup.isB4(event.getButton()))
 			{
-				player.sendMessage("B4");
+				player.chat("/farheavens");
 			}		
 			else
 			{
-				player.sendMessage("b???");
-				
+				player.sendMessage(ChatColor.RED + "Station inconnue !");				
 			}
 			
-			popup.close();
-
-			player.getMainScreen().closePopup();
-			//Bukkit.getServer().getPluginCommand("");
-			//player
+			popup.close();		
 		}
 }

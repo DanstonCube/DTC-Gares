@@ -1,4 +1,4 @@
-package com.danstoncube.plugin.drzoid.Gares;
+package com.danstoncube.Gares;
 
 import java.util.UUID;
 
@@ -74,11 +74,12 @@ public class GaresPopup extends GenericPopup
 		box.setAnchor(WidgetAnchor.CENTER_CENTER);
 		box.setWidth(widthScale * 50).setHeight(heightScale * 50);
 		box.shiftYPos(-(box.getHeight()/2));
-		box.shiftXPos(-spawnButton.getWidth()/2);
+		box.shiftXPos(-(box.getWidth()/2));
 
 		this.setTransparent(true);
 		this.attachWidget(gares, box);
 
+		
 		b1ID = spawnButton.getId();
 		b2ID = mineButton.getId();
 		b3ID = scierieButton.getId();

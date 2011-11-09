@@ -1,5 +1,6 @@
-package com.danstoncube.plugin.drzoid.Gares;
+package com.danstoncube.Gares;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -16,7 +17,6 @@ import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 
-@SuppressWarnings("unused")
 public class Gares extends JavaPlugin 
 {
 	private static Gares instance = null;
@@ -39,54 +39,37 @@ public class Gares extends JavaPlugin
 		instance = this;
 		PluginManager pm = getServer().getPluginManager();
 		
-		
-		//pm.registerEvent(Event.Type.CUSTOM_EVENT, new GaresInputListener(), Priority.Normal, this);
 		pm.registerEvent(Event.Type.CUSTOM_EVENT, new GaresScreenListener(), Priority.Normal, this);
-		
 		
 		BindingExecutionDelegate delegate = new BindingExecutionDelegate() 
 		{
-            
             @Override
             public void keyReleased(KeyBindingEvent event) 
             {
-            	event.getPlayer().sendMessage(event.getPlayer().getMainScreen().getScreenType().toString());
             	
-            	
-            	if(!event.getPlayer().isSpoutCraftEnabled())
-            	{
-            		event.getPlayer().sendMessage("a pas spout");
-            		return;
-            	}
-            	            	
-            	if(event.getPlayer().getMainScreen().getScreenType() != ScreenType.GAME_SCREEN)
+            	if((event.getPlayer().getActiveScreen() != ScreenType.CUSTOM_SCREEN && event.getPlayer().getActiveScreen() != ScreenType.GAME_SCREEN))
             	{
             		return;
             	}
             	
-            	if(event.getPlayer().getMainScreen().getActivePopup() == null)
+            	if(event.getPlayer().getMainScreen().getActivePopup() != null)
             	{
-            		Gares.getInstance().showPopup(event.getPlayer());
+            		return;
             	}
             	
+            	
+            	Gares.getInstance().showPopup(event.getPlayer());
             }
            
             @Override
             public void keyPressed(KeyBindingEvent event) 
             {
-            	
-            	
             }
-
-			
 		};
-		
-		//Spout.getInstance(). 
-		//Spout.getInstance().getServer().
-		
+			
 		try
 		{
-			SpoutManager.getKeyBindingManager().registerBinding("toucheG", Keyboard.KEY_G, "DTC - Choix station", delegate, this);
+			SpoutManager.getKeyBindingManager().registerBinding("touche_gares", Keyboard.KEY_G, "DTC - Choix station", delegate, this);
 		}
 		catch (Exception e)
 		{
@@ -96,6 +79,15 @@ public class Gares extends JavaPlugin
 		
 	}
 	
+	protected void showTextMenu(SpoutPlayer player)
+	{
+		player.sendMessage(ChatColor.BLUE + "Liste des stations de Bisounours: ");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisoumine" + ChatColor.WHITE + " -> Mine publique");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisouferme" + ChatColor.WHITE + " -> Ferme et scierie publique");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisougare" + ChatColor.WHITE + " -> Spawn de Bisounours");
+		player.sendMessage(ChatColor.DARK_BLUE + "/farheavens" + ChatColor.WHITE + " -> Farheavens");		
+	}
+
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
 		if(sender instanceof ConsoleCommandSender) {
@@ -117,6 +109,10 @@ public class Gares extends JavaPlugin
 		if(player.isSpoutCraftEnabled())
 		{
 			showPopup(player);
+		}
+		else
+		{
+			showTextMenu(player);
 		}
 		
 		return true;
