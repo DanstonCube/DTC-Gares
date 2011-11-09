@@ -1,0 +1,14 @@
+name: DTCGares
+author: DrZoid (miko)
+main: com.danstoncube.plugin.drzoid.Gares.Gares
+version: 1.0
+depend: [Spout]
+commands:
+  gares:
+    description: Ouvre le choix de la station
+    aliases: gares
+    usage: /gares
+permissions:
+  dtc.garesui:
+    description: Autorise l'interface de choix de la station.
+    default: true
