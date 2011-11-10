@@ -34,7 +34,7 @@ public class Gares extends JavaPlugin
 
 	public void onEnable()
 	{
-		getServer().getLogger().info("DTC - Gares activées");
+		
 		
 		instance = this;
 		PluginManager pm = getServer().getPluginManager();
@@ -65,7 +65,7 @@ public class Gares extends JavaPlugin
             public void keyPressed(KeyBindingEvent event) 
             {
             }
-		};
+        };
 			
 		try
 		{
@@ -77,17 +77,20 @@ public class Gares extends JavaPlugin
 			e.printStackTrace();
 		}
 		
+		
+		
+		
+		
+		//Custom blocks =)
+		GaresCustomBlocks.precacheTextures();
+		GaresCustomBlocks.loadTextures();
+		GaresCustomBlocks.createBlocks();
+		GaresCustomBlocks.createRecipes();
+		
+		getServer().getLogger().info("DTC - Gares activées");
 	}
 	
-	protected void showTextMenu(SpoutPlayer player)
-	{
-		player.sendMessage(ChatColor.BLUE + "Liste des stations de Bisounours: ");
-		player.sendMessage(ChatColor.DARK_BLUE + "/bisoumine" + ChatColor.WHITE + " -> Mine publique");
-		player.sendMessage(ChatColor.DARK_BLUE + "/bisouferme" + ChatColor.WHITE + " -> Ferme et scierie publique");
-		player.sendMessage(ChatColor.DARK_BLUE + "/bisougare" + ChatColor.WHITE + " -> Spawn de Bisounours");
-		player.sendMessage(ChatColor.DARK_BLUE + "/farheavens" + ChatColor.WHITE + " -> Farheavens");		
-	}
-
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
 		if(sender instanceof ConsoleCommandSender) {
@@ -98,13 +101,25 @@ public class Gares extends JavaPlugin
 		if(cmd.getName().equalsIgnoreCase("gares")) 
 		{
 			Player player = ((Player) sender);
-			return doCommand((SpoutPlayer) player, args);
+			return garesCommand((SpoutPlayer) player, args);
 		}
 		
 		return false;
 	}
-
-	private boolean doCommand(SpoutPlayer player, String[] args)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void showMenu(SpoutPlayer player)
 	{
 		if(player.isSpoutCraftEnabled())
 		{
@@ -114,7 +129,23 @@ public class Gares extends JavaPlugin
 		{
 			showTextMenu(player);
 		}
-		
+	}
+	
+	
+	public void showTextMenu(SpoutPlayer player)
+	{
+		player.sendMessage(ChatColor.BLUE + "Liste des stations de Bisounours: ");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisoumine" + ChatColor.WHITE + " -> Mine publique");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisouferme" + ChatColor.WHITE + " -> Ferme et scierie publique");
+		player.sendMessage(ChatColor.DARK_BLUE + "/bisougare" + ChatColor.WHITE + " -> Spawn de Bisounours");
+		player.sendMessage(ChatColor.DARK_BLUE + "/farheavens" + ChatColor.WHITE + " -> Farheavens");		
+	}
+
+	
+
+	private boolean garesCommand(SpoutPlayer player, String[] args)
+	{
+		showMenu(player);
 		return true;
 	}
 
