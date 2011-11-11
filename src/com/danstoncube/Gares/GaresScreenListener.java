@@ -2,9 +2,13 @@ package com.danstoncube.Gares;
 
 
 
+
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.event.screen.ScreenListener;
+import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class GaresScreenListener extends ScreenListener 
@@ -23,7 +27,6 @@ public class GaresScreenListener extends ScreenListener
 			
 			GaresPopup popup = (GaresPopup) player.getMainScreen().getActivePopup();
 			
-			
 			if(popup.isB1(event.getButton()))
 			{
 				player.chat("/bisougare");
@@ -39,11 +42,15 @@ public class GaresScreenListener extends ScreenListener
 			else if(popup.isB4(event.getButton()))
 			{
 				player.chat("/farheavens");
+				
 			}		
 			else
 			{
 				player.sendMessage(ChatColor.RED + "Station inconnue !");				
 			}
+			
+			
+			player.sendNotification("Gares", "Ton minecart ira à " + event.getButton().getText(), Material.RAILS);
 			
 			popup.close();		
 		}
