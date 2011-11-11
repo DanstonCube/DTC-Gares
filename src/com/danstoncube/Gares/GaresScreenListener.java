@@ -8,7 +8,6 @@ import org.bukkit.Material;
 
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.event.screen.ScreenListener;
-import org.getspout.spoutapi.material.MaterialData;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class GaresScreenListener extends ScreenListener 
@@ -30,28 +29,28 @@ public class GaresScreenListener extends ScreenListener
 			if(popup.isB1(event.getButton()))
 			{
 				player.chat("/bisougare");
+				player.sendNotification("Choix gare", "Spawn de Bisounours !", Material.RAILS);
 			}			
 			else if(popup.isB2(event.getButton()))
 			{
 				player.chat("/bisoumine");
+				player.sendNotification("Choix gare", "Mine publique", Material.RAILS);
 			}			
 			else if(popup.isB3(event.getButton()))
 			{
 				player.chat("/bisouferme");
+				player.sendNotification("Choix gare", "Ferme / scierie", Material.RAILS);
 			}			
 			else if(popup.isB4(event.getButton()))
 			{
 				player.chat("/farheavens");
-				
+				player.sendNotification("Choix gare", "Farheavens", Material.RAILS);
 			}		
 			else
 			{
-				player.sendMessage(ChatColor.RED + "Station inconnue !");				
+				player.sendMessage(ChatColor.RED + "Station inconnue !");
 			}
-			
-			
-			player.sendNotification("Gares", "Ton minecart ira à " + event.getButton().getText(), Material.RAILS);
-			
+			//Material.RAILS.
 			popup.close();		
 		}
 }

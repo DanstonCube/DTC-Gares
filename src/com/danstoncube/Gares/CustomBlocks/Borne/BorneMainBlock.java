@@ -14,20 +14,25 @@ import org.getspout.spoutapi.block.design.BlockDesign;
 import org.getspout.spoutapi.block.design.GenericCubeBlockDesign;
 import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
 import org.getspout.spoutapi.material.MaterialData;
+import org.getspout.spoutapi.material.block.GenericCustomBlock;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 import com.danstoncube.Gares.Gares;
 import com.danstoncube.Gares.GaresCustomBlocks;
+import com.danstoncube.Gares.GaresCustomSounds;
 import com.danstoncube.Gares.CustomBlocks.BorneBlock;
 
-public class BorneMainBlock extends BorneBlock
+public class BorneMainBlock extends GenericCustomBlock
 {
 	SpoutShapedRecipe recipe;
 	
 	public BorneMainBlock()
 	{
+		
 		super(Gares.getInstance(), "BorneMainBlock");
 
+		Bukkit.getServer().getLogger().info("BorneMainBlock");
+		
 		BlockDesign design = new GenericCubeBlockDesign(Gares.getInstance(), BorneBlock.getTexture(), new int[] { 1, 0, 0, 0, 0, 1 });
 		//ints are { bottom, north, ?, ?, ?, top }
 		this.setBlockDesign(design);		
@@ -94,7 +99,7 @@ public class BorneMainBlock extends BorneBlock
 		
 		if(relativeBottom.getTypeId() == 0)
 		{
-			relativeTop.setTypeId(GaresCustomBlocks.borneBottomBlock.getCustomId());
+			relativeBottom.setTypeId(GaresCustomBlocks.borneBottomBlock.getCustomId());
 		}
 		
 		//(onblockplace) (Block) block.getRelative(0, -1, 0).setTypeId(mycustomBlock.getCustomId());
@@ -116,6 +121,8 @@ public class BorneMainBlock extends BorneBlock
 			int paramInt2, int paramInt3, SpoutPlayer paramSpoutPlayer)
 	{
 
+		GaresCustomSounds.playOpenSound(paramSpoutPlayer);
+		
 		Gares.getInstance().showMenu(paramSpoutPlayer);
 		
 		return true;
@@ -135,6 +142,9 @@ public class BorneMainBlock extends BorneBlock
 		//On check qu'il tappe a la main pour ouvrir la fenetre (sinon on peut pas péter le bloc a cause du popup)
 		if(paramSpoutPlayer.getItemInHand().getType() != Material.AIR)
 			return;
+		
+		
+		GaresCustomSounds.playOpenSound(paramSpoutPlayer);
 		
 		Gares.getInstance().showMenu(paramSpoutPlayer);
 	}

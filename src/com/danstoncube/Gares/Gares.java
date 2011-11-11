@@ -28,7 +28,7 @@ public class Gares extends JavaPlugin
 
 	public void onDisable()
 	{
-		getServer().getLogger().info("DTC - Gares désactivées");
+		getServer().getLogger().info("DTC - Gares désactivés");
 	}
 
 
@@ -39,7 +39,9 @@ public class Gares extends JavaPlugin
 		instance = this;
 		PluginManager pm = getServer().getPluginManager();
 		
+		
 		pm.registerEvent(Event.Type.CUSTOM_EVENT, new GaresScreenListener(), Priority.Normal, this);
+		
 		
 		BindingExecutionDelegate delegate = new BindingExecutionDelegate() 
 		{
@@ -87,7 +89,7 @@ public class Gares extends JavaPlugin
 		GaresCustomBlocks.createBlocks();
 		GaresCustomBlocks.createRecipes();
 		
-		getServer().getLogger().info("DTC - Gares activées");
+		getServer().getLogger().info("DTC - Gares activés");
 	}
 	
 	

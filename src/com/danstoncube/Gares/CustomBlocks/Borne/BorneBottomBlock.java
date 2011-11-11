@@ -10,12 +10,14 @@ import org.getspout.spoutapi.block.design.BlockDesign;
 import org.getspout.spoutapi.block.design.GenericCubeBlockDesign;
 import org.getspout.spoutapi.inventory.SpoutShapedRecipe;
 import org.getspout.spoutapi.material.MaterialData;
+import org.getspout.spoutapi.material.block.GenericCustomBlock;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 import com.danstoncube.Gares.Gares;
 import com.danstoncube.Gares.CustomBlocks.BorneBlock;
 
-public class BorneBottomBlock extends BorneBlock
+
+public class BorneBottomBlock extends GenericCustomBlock
 {
 	SpoutShapedRecipe recipe;
 	
